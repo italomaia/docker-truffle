@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR $HOME
 USER $USR
 
-RUN yarn add truffle@4.0.1 ganache-cli --non-interactive --no-progress --no-lockfile && \
+RUN mkdir -p "$HOME/.config/fish" && echo 'set PATH "$HOME/.yarn/bin" $PATH' >> "$HOME/.config/fish/config.fish"
+RUN yarn global add truffle@4.0.1 ganache-cli --non-interactive --no-progress --no-lockfile && \
   yarn cache clean
 
 CMD fish
