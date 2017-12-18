@@ -15,6 +15,7 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update && apt-get install -y \
   yarn\
   ne\
+  tree\
   fish\
   ethereum\
   && rm -rf /var/lib/apt/lists/*
@@ -23,7 +24,7 @@ WORKDIR $HOME
 USER $USR
 
 RUN mkdir -p "$HOME/.config/fish" && echo 'set PATH "$HOME/.yarn/bin" $PATH' >> "$HOME/.config/fish/config.fish"
-RUN yarn global add truffle@4.0.1 ganache-cli --non-interactive --no-progress --no-lockfile && \
+RUN yarn global add truffle@4.0.1 ganache-cli@6.0.3 --non-interactive --no-progress --no-lockfile && \
   yarn cache clean
 
 CMD fish
